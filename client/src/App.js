@@ -1,6 +1,7 @@
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 import TestValidateButton from './TestValidateButton';
+import CreatePost from './CreatePost';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <SignupForm />
       <br />
       <TestValidateButton />
+      <br />
+      <CreatePost />
     </div>
   );
 }

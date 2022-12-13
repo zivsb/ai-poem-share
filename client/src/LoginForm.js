@@ -20,6 +20,7 @@ const LoginForm = () => {
             });
 
             const result = await response.json();
+            
 
             // Check if the server returned an error
             if (result.error) {
@@ -29,6 +30,7 @@ const LoginForm = () => {
 
             // If the server returned a JWT, save it in local storage
             localStorage.setItem('jwt', result.token);
+            localStorage.setItem('username', username);
 
         }catch (error) {
             setError(error.message);
