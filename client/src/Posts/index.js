@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import SinglePost from './SinglePost';
+import './posts.css';
 
 class Posts extends Component {    
     constructor(props) {
@@ -48,20 +50,29 @@ class Posts extends Component {
 
     const newPosts = await response.json();
 
-    this.setState(prevState => ({
+    await this.setState(prevState => ({
         posts: [...prevState.posts, ...newPosts],
         hasMore: newPosts.length === 10, page: prevState.page + 1
     }));
+
     console.log("In function: ");
-    console.log(JSON.stringify(this.state.posts));
+    console.log(this.state);
 
   }
 
   render() {
     return (
-      <div id="lol">
+      <div id="posts">
         {this.state.posts.map(post => (
-          <div id={post.hash}>{post.title}</div>
+          <SinglePost
+            title={post.title}
+            ai={post.ai}  
+            creator={post.creator}
+            poem={post.poem}
+            timestamp={post.timestamp}
+
+            hash={post.hash}
+            />
 
         ))}
 

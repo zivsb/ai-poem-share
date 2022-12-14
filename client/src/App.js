@@ -4,22 +4,17 @@ import TestValidateButton from './TestValidateButton';
 import CreatePost from './CreatePost';
 import Topbar from './Topbar';
 import Posts from './Posts';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <Topbar />
-      <h1>My Social Media</h1>
-      <LoginForm />
-      <br></br>
-      <br />
-      <SignupForm />
-      <br />
-      <TestValidateButton />
-      <br />
-      <CreatePost />
-      <br />
-      <Posts />
+      <Routes>
+        <Route path="/" element={<Posts />}></Route>
+        <Route path="/enteraccount" element={<div><LoginForm /> <hr /> <SignupForm/></div>}></Route>
+        <Route path="/createpost" element={<CreatePost/>}></Route>
+      </Routes>
     </div>
   );
 }

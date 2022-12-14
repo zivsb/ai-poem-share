@@ -19,10 +19,10 @@ const topbarStyle = {
 
 const Topbar = () => (
   <Navbar bg="dark" variant="dark" fixed="top" style={topbarStyle}>
-    <Navbar.Brand href="#home">My React App</Navbar.Brand>
+    <Navbar.Brand href="/">My React App</Navbar.Brand>
     <Nav className="mr-auto">
-      <Nav.Link href="#">Create Post</Nav.Link>
-      <Nav.Link href="#">Log in or Register</Nav.Link>
+      <Nav.Link href="/createpost">Create Post</Nav.Link>
+      <Nav.Link href="/enteraccount">Log in or Register</Nav.Link>
     </Nav>
   </Navbar>
 );
