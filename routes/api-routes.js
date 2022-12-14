@@ -14,6 +14,11 @@ const db = mysql.createConnection({
     database: 'ai-poem-share'
 });
 
+// MySQL request to get 10 most recent posts:
+// `SELECT * FROM posts ORDER BY timestamp DESC LIMIT 10`
+// Then send a response of an array of objects
+
+
 const validateJWT = (req, res, next) => {
     const { token } = req.body;
 
@@ -43,7 +48,19 @@ const validateJWT = (req, res, next) => {
     });
 };
 
+apiRouter.get('/get-entries/:x', (req, res) => {
+    const offset = 10 * req.params["x"];
+    console.log("offset");
 
+    db.query('SELECT * FROM posts ORDER BY timestamp DESC LIMIT 10 OFFSET ?', [offset], (err, results) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        console.log("success to this point");
+        res.send(results);
+    });
+});
 
 // A test to make sure that we can allow 
 apiRouter.post('/secret', validateJWT, (req, res) => {

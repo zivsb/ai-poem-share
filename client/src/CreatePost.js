@@ -18,7 +18,9 @@ const CreatePost = () => {
                 }
             });
 
-            if(!response.ok) {
+            const newPosts = await response.json();
+
+            if(!response.success) {
                 throw new Error('Something went wrong');
             }
 
