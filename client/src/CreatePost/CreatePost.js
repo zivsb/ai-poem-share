@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./CreatePost.css"
 
 const CreatePost = () => {
     const [poem, setPoem] = useState('');
@@ -35,7 +36,7 @@ const CreatePost = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form class="form" onSubmit={handleSubmit}>
           <label>
             Poem:
             <textarea value={poem} onChange={e => setPoem(e.target.value)} />
@@ -47,7 +48,7 @@ const CreatePost = () => {
           </label>
           <br />
           <label>
-            Tag:
+            AI Used:
             <input type="text" value={tag} onChange={e => setTag(e.target.value)} />
           </label>
           <br />
