@@ -20,15 +20,18 @@ const CreatePost = () => {
 
             const newPosts = await response.json();
 
-            if(!response.success) {
-                throw new Error('Something went wrong');
+            if(newPosts.status !== "success") {
+              // console.log(newPosts);
+              throw new Error('Something went wrong');
             }
 
             alert('Poem submitted successfully!');
-        } catch (err) {
-            console.error(err);
+        } catch (Error) {
+            // console.error(Error);
             alert('Failed to submit poem. Please try again.');
         }
+        
+        window.location.replace('/');
     };
 
     return (

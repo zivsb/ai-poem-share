@@ -80,6 +80,13 @@ apiRouter.post('/signup', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    if (username === "" || password === "" || email === "") {
+        res.status(400).json({
+            message: 'At least one of the fields were invalid',
+            status: 'error'
+    });
+    return;
+    }
     // TO DO check validity of email
     // If invalid: return res.status(404).send({ message: 'Username exists' });
 
@@ -124,6 +131,15 @@ apiRouter.post('/login', async (req, res) => {
     let user;
 
     console.log("login called");
+
+    if (username === "" || password === "") {
+        res.status(400).json({
+            message: 'At least one of the fields were invalid',
+            status: 'error'
+    });
+    return;
+    }
+
     // Checking if username exists
     db.query('SELECT * FROM `users` WHERE `username` = ?', [username], async (error, results) => {
         console.log("in the query");
@@ -177,20 +193,35 @@ apiRouter.post('/create-post', validateJWT, (req, res) => {
     const hash = sha256(creator + timestamp);
     console.log(hash);
 
-    db.query(
-            'INSERT INTO posts (hash, creator, title, poem, ai, timestamp) VALUES (?, ?, ?, ?, ?, ?)',
-            [hash, creator, title, poem, tag, timestamp], (error, results) => {
-    
-                if(error) {
-                    console.log(error);
-                    res.send('An error occured while creating post');
-                } else {
-                    console.log(`Post ${title} Created!`);
+    if (poem === "" || title === "" || tag === "") {
+        res.status(400).json({
+            message: 'At least one of the fields were invalid',
+            status: 'error'
+        });
 
-                    res.send("success");
+    } else {
+
+        db.query(
+                'INSERT INTO posts (hash, creator, title, poem, ai, timestamp) VALUES (?, ?, ?, ?, ?, ?)',
+                [hash, creator, title, poem, tag, timestamp], (error, results) => {
+        
+                    if(error) {
+                        console.log(error);
+                        res.status(400).json({
+                            message: 'Invalid request data',
+                            status: 'error'
+                        });
+                    } else {
+                        console.log(`Post ${title} Created!`);
+
+                        res.status(201).json({
+                            message: 'Post successfully created',
+                            status: 'success'
+                        });
+                    }
                 }
-            }
-    );
+        );
+    }
 
 
 });

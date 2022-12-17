@@ -1,10 +1,15 @@
+#posts {
+    margin-top: 80px;
+}
+
 .post {
     text-align: center;
     width: 90%;
     border-radius: 10px;
     border: 2px solid #333;
-    margin: 20px auto;
+    margin: 80px auto;
     padding: 20px;
+    position: relative;
 }
 
 .post #credits {
@@ -21,3 +26,22 @@
     color: #999;
 }
   
+.post .icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px; /* Set the width and height of the icon */
+    height: 30px;
+    background-color: transparent;
+    border: none;
+  }
+  
+.post .icon img {
+    width: 100%; /* Scale the icon to fit the element */
+    height: 100%;
+}
+
+.link-text {
+    display: none;
+    font-size: 0.5em;
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./LoginRegister.css"
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -20,11 +21,11 @@ const LoginForm = () => {
             });
 
             const result = await response.json();
-            
-
+            // console.log(result);
             // Check if the server returned an error
-            if (result.error) {
+            if (result.message !== undefined) {
                 setError(result.error);
+                alert(result.message);
                 return;
             }
 
@@ -40,23 +41,29 @@ const LoginForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             {error && <p className='error'>{error}</p>}
-            <label htmlFor='username'>Username</label>
-            <input 
-                type="text"
-                id="username"
-                name="username"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+            <div class="form-field">
+                <label htmlFor='username'>Username</label>
+                <br />
+                <input 
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={username}
+                    onChange={(event) => setUsername(event.target.value)}
+                />
+            </div>
+            
+        <div class="form-field">
+            <label htmlFor='password'>Password</label>
+            <br />
+                <input 
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
             />
-
-        <label htmlFor='password'>Password</label>
-            <input 
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-            />
+        </div>
 
             <button type="submit">Log In</button>
         </form>
