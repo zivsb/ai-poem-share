@@ -36,7 +36,12 @@ const CreatePost = () => {
     };
 
     return (
+      <div>
+        <br />
+        
         <form class="form" onSubmit={handleSubmit}>
+        <h1>Create a Post</h1>
+        <br />
           <label>
             Poem:
             <textarea value={poem} onChange={e => setPoem(e.target.value)} />
@@ -54,6 +59,7 @@ const CreatePost = () => {
           <br />
           <button type="submit">Submit</button>
         </form>
+        </div>
       );
     };
     

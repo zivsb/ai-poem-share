@@ -41,6 +41,7 @@ const LoginForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             {error && <p className='error'>{error}</p>}
+            <h1>Log in</h1>
             <div class="form-field">
                 <label htmlFor='username'>Username</label>
                 <br />

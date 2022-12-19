@@ -48,6 +48,7 @@ const SignupForm = () => {
 
     return (
         <form>
+            <h1>Create Account</h1>
             <div class="form-field">
                 <label htmlFor='username'>Username</label>
                 <br />

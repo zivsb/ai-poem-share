@@ -48,6 +48,11 @@ const validateJWT = (req, res, next) => {
     });
 };
 
+// A function to return formatted poems
+function formatPoem(poem) {
+    return poem.replace(/\n/g, "<br>");
+}
+
 apiRouter.get('/get-entries/:x', (req, res) => {
     const offset = 10 * req.params["x"];
     console.log("offset");
@@ -57,10 +62,18 @@ apiRouter.get('/get-entries/:x', (req, res) => {
             return res.status(500).send(err);
         }
 
+        console.log(results);
+
         console.log("success to this point");
+        results.map(item => {
+            item.poem = formatPoem(item.poem);
+        });
+        console.log(results);
         res.send(results);
     });
 });
+
+
 
 // A test to make sure that we can allow 
 apiRouter.post('/secret', validateJWT, (req, res) => {
